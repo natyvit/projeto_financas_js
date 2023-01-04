@@ -19,21 +19,18 @@ const removeTransacao = (ID) => {
   init();
 }
 
-const adicionaTransacaoDom = (transaction) => {
+const adicionaTransacaoDom = ({ valor, nome, id }) => {
   // Pegar o valor da transação
-  const operador = transaction.valor < 0 ? "-" : "+";
-  const CSSClass = transaction.valor < 0 ? "minus" : "plus";
-  const valorSemOperador = Math.abs(transaction.valor);
+  const operador = valor < 0 ? "-" : "+";
+  const CSSClass = valor < 0 ? "minus" : "plus";
+  const valorSemOperador = Math.abs(valor);
   const li = document.createElement("li");
 
   li.classList.add(CSSClass);
   li.innerHTML = `
-    ${transaction.nome} 
+    ${nome} 
     <span>${operador} R$ ${valorSemOperador}</span>
-    <button class="delete-btn" onClick="removeTransacao(${transaction.id})">
-      x
-    </button>
-  `;
+    <button class="delete-btn" onClick="removeTransacao(${id})">x</button> `;
 
   transactionsUl.append(li);
 }
